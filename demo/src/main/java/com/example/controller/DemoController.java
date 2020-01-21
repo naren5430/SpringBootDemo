@@ -59,6 +59,7 @@ public class DemoController {
 	 */
 	
 	/**
+	 * @ApiUse --save
 	 * @param data
 	 * @return
 	 * @author Narendranadh P
@@ -70,16 +71,37 @@ public class DemoController {
 		return service.save(data);
 	}
 	
+	/**
+	 * @ApiUse --Update using Pk_id
+	 * @param data
+	 * @param id
+	 * @return
+	 * @author Narendranadh P
+	 * @since 21-01-2020
+	 */
 	@PutMapping("/beacon/update/{pk_id}")
 	public int update(@RequestBody Map<String, Object > data, @PathVariable("pk_id") int id) {
 		return service.update(data, id);
 	}
 	
+	/**
+	 * @ApiUse --Delete
+	 * @param id
+	 * @return
+	 * @author Narendranadh P
+	 * @since 21-01-2020
+	 */
 	@DeleteMapping("/beacon/delete/{pk_id}")
 	public int delete(@PathVariable("pk_id") int id) {
 		return service.delete(id);
 	}
 	
+	/**
+	 * @apiUse --List 
+	 * @return
+	 * @author Narendranadh P
+	 * @since 21-01-2020
+	 */
 	@PostMapping("/beacon/list")
 	public ResponseEntity<Map<String, Object>> list() {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
@@ -92,6 +114,12 @@ public class DemoController {
 		//return service.list();
 	}
 	
+	/**
+	 * @apiUse --List with Sort
+	 * @return
+	 * @author Narendranadh P
+	 * @since 21-01-2020
+	 */
 	@PostMapping("/beacon/list/{parameter}/{sort}")
 	public ResponseEntity<Map<String, Object>> list(@PathVariable("parameter") String parameter, @PathVariable("sort") String sort) {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
