@@ -32,24 +32,60 @@ public class DemoService {
 		return val1 * val2;
 	}
 
+	/**
+	 * 
+	 * @param data
+	 * @return
+	 * @author Narendranadh P
+	 * @since 21-01-2020
+	 */
 	public int save(Map<String, Object> data) {
 		return dao.save(data);
 	}
 
+	/**
+	 * 
+	 * @param data
+	 * @param id
+	 * @return
+	 * @author Narendranadh P
+	 * @since 21-01-2020
+	 */
 	public int update(Map<String, Object> data, int id) {
 		return dao.update(data, id);
 	}
 
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @author Narendranadh P
+	 * @since 21-01-2020
+	 */
 	public int delete(int id) {
 		return dao.delete(id);
 	}
 
+	/**
+	 * 
+	 * @return
+	 * @author Narendranadh P
+	 * @since 21-01-2020
+	 */
 	public List<Map<String, Object>> list() {
 		//List<Map<String, Object>> data = new ArrayList<Map<String,Object>>();
 		return dao.list();
 		
 	}
 
+	/**
+	 * 
+	 * @param parameter
+	 * @param sort
+	 * @return
+	 * @author Narendranadh P
+	 * @since 21-01-2020
+	 */
 	public List<Map<String, Object>> list(String parameter, String sort) {
 		//List<Map<String, Object>> data = new ArrayList<Map<String,Object>>();
 		return dao.list(parameter, sort);
