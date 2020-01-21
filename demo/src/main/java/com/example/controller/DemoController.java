@@ -32,7 +32,10 @@ public class DemoController {
 	
 	@Autowired
 	DemoService service;
-	
+	/**
+	 * 
+	 * @return
+	 */
 	@GetMapping("/name")
 	public String displayName() {
 		return "Mani Paul sample";
