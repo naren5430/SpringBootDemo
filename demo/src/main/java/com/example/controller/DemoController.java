@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.service.DemoService;
 
 /**
- * 	
+ * @apiNote Beacon CURD operation
  * @author Narendranadh P
  * @since 10-01-2020
  */
