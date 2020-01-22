@@ -38,7 +38,7 @@ public class DemoController {
 	 */
 	@GetMapping("/name")
 	public String displayName() {
-		return "Mani Paul sample";
+		return "Narendranadh Chowdary Palempati";
 	}
 	@PostMapping("/addition/{val1}/{val2}")
 	public int addition(@PathVariable("val1") int val1,@PathVariable("val2") int val2) {
