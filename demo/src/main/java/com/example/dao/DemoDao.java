@@ -67,8 +67,7 @@ public class DemoDao {
 	 * @param sort
 	 * @return
 	 * @author Narendranadh P
-	 * @since 21-01-2020 date_format(created_time,'%D-%M-%Y T(hr-min-sec)%H-%i-%S
-	 *        --%r')
+	 * @since 21-01-2020 date_format(created_time,'%D-%M-%Y T(hr-min-sec)%H-%i-%S --%r')
 	 * @see https://www.w3schools.com/sql/func_mysql_date_format.asp
 	 */
 	public List<Map<String, Object>> list(String parameter, String sort) {
