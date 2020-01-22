@@ -38,7 +38,7 @@ public class DemoController {
 	 */
 	@GetMapping("/name")
 	public String displayName() {
-		return "Mani Paul sample";
+		return "Narendranadh Chowdary Palempati";
 	}
 	@PostMapping("/addition/{val1}/{val2}")
 	public int addition(@PathVariable("val1") int val1,@PathVariable("val2") int val2) {
@@ -107,11 +107,11 @@ public class DemoController {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		list = service.list();
+		// TODO Pagination
 		map.put("message", "approved");
 		map.put("status", "success");
 		map.put("data", list);
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
-		//return service.list();
 	}
 	
 	/**
@@ -120,11 +120,13 @@ public class DemoController {
 	 * @author Narendranadh P
 	 * @since 21-01-2020
 	 */
+	
 	@PostMapping("/beacon/list/{parameter}/{sort}")
 	public ResponseEntity<Map<String, Object>> list(@PathVariable("parameter") String parameter, @PathVariable("sort") String sort) {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		list = service.list(parameter, sort);
+		// TODO Pagination
 		map.put("message", "approved");
 		map.put("status", "success");
 		map.put("data", list);

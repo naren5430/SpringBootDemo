@@ -73,7 +73,6 @@ public class DemoService {
 	 * @since 21-01-2020
 	 */
 	public List<Map<String, Object>> list() {
-		//List<Map<String, Object>> data = new ArrayList<Map<String,Object>>();
 		return dao.list();
 		
 	}
@@ -87,7 +86,6 @@ public class DemoService {
 	 * @since 21-01-2020
 	 */
 	public List<Map<String, Object>> list(String parameter, String sort) {
-		//List<Map<String, Object>> data = new ArrayList<Map<String,Object>>();
 		return dao.list(parameter, sort);
 		
 	}
