@@ -120,6 +120,7 @@ public class DemoController {
 	 * @author Narendranadh P
 	 * @since 21-01-2020
 	 */
+	
 	@PostMapping("/beacon/list/{parameter}/{sort}")
 	public ResponseEntity<Map<String, Object>> list(@PathVariable("parameter") String parameter, @PathVariable("sort") String sort) {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();

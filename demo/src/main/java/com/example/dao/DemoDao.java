@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class DemoDao {
-	
+
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
@@ -21,9 +21,8 @@ public class DemoDao {
 	 * @since 21-01-2020
 	 */
 	public int save(Map<String, Object> data) {
-		return jdbcTemplate.update(
-                "INSERT INTO beacon (name, mac, message, location) VALUES(?,?)",
-                data.get("name"), data.get("becon_mac"), data.get("message"), data.get("location"));
+		return jdbcTemplate.update("INSERT INTO beacon (name, mac, message, location) VALUES(?,?, ?, ?)",
+				data.get("name"), data.get("becon_mac"), data.get("message"), data.get("location"));
 	}
 
 	/**
@@ -36,8 +35,8 @@ public class DemoDao {
 	 */
 	public int update(Map<String, Object> data, int id) {
 		return jdbcTemplate.update(
-                "UPDATE `beacon` SET `name` = ?, `mac` = ?, `message` = ?, `location` = ? WHERE `pk_id` = ?",
-                data.get("name"), data.get("becon_mac"), data.get("message"), data.get("location"), id);
+				"UPDATE `beacon` SET `name` = ?, `mac` = ?, `message` = ?, `location` = ? WHERE `pk_id` = ?",
+				data.get("name"), data.get("becon_mac"), data.get("message"), data.get("location"), id);
 	}
 
 	/**
@@ -58,18 +57,23 @@ public class DemoDao {
 	 * @since 21-01-2020
 	 */
 	public List<Map<String, Object>> list() {
-		return jdbcTemplate.queryForList("SELECT mac AS `becon_mac`, name, message, location FROM beacon");
+		return jdbcTemplate.queryForList(
+				"SELECT mac AS `becon_mac`, name, message, location, date_format(created_time,'%D-%M-%Y %r') AS `Added Date` FROM beacon ORDER BY pk_id DESC");
 	}
-	
+
 	/**
 	 * 
 	 * @param parameter
 	 * @param sort
 	 * @return
 	 * @author Narendranadh P
-	 * @since 21-01-2020
+	 * @since 21-01-2020 date_format(created_time,'%D-%M-%Y T(hr-min-sec)%H-%i-%S
+	 *        --%r')
+	 * @see https://www.w3schools.com/sql/func_mysql_date_format.asp
 	 */
 	public List<Map<String, Object>> list(String parameter, String sort) {
-		return jdbcTemplate.queryForList("SELECT mac AS `becon_mac`, name, message, location FROM beacon ORDER BY "+parameter+" "+sort);
+		return jdbcTemplate.queryForList(
+				"SELECT mac AS `becon_mac`, name, message, location, date_format(created_time,'%D-%M-%Y %r') AS `Added Date` FROM beacon ORDER BY "
+						+ parameter + " " + sort);
 	}
 }
