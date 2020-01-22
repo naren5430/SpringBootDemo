@@ -107,11 +107,11 @@ public class DemoController {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		list = service.list();
+		// TODO Pagination
 		map.put("message", "approved");
 		map.put("status", "success");
 		map.put("data", list);
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
-		//return service.list();
 	}
 	
 	/**
@@ -125,6 +125,7 @@ public class DemoController {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		list = service.list(parameter, sort);
+		// TODO Pagination
 		map.put("message", "approved");
 		map.put("status", "success");
 		map.put("data", list);
