@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,9 +28,10 @@ import com.example.service.DemoService;
  * @author Narendranadh P
  * @since 10-01-2020
  */
+@SuppressWarnings("serial")
 @RestController
-@RequestMapping("/demo")
-public class DemoController {
+@RequestMapping(value = "/demo")
+public class DemoController extends RuntimeException{
 	
 	@Autowired
 	DemoService service;
@@ -63,12 +66,28 @@ public class DemoController {
 	 * @param data
 	 * @return
 	 * @author Narendranadh P
+	 * @return 
 	 * @since 20-01-2020
 	 */
-	
+
+	/*
+	 * Accepts Json format
 	@PostMapping("/beacon/save")
 	public int save(@RequestBody Map<String, Object > data) {
 		return service.save(data);
+	}
+	*/
+	@PostMapping(path = "/beacon/save", consumes = "application/x-www-form-urlencoded")
+	public ResponseEntity<Map<String, Object>> save(@RequestParam Map<String, Object > data, HttpSession httpSession) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		int res = service.save(data);
+			if(res == 1) {
+			map.put("message", "approved");
+			map.put("status", "success");
+			}else {	
+	        map.put("error", "history already exist");	
+		}
+		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
 	
 	/**

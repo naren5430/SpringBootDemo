@@ -21,9 +21,28 @@ public class DemoDao {
 	 * @since 21-01-2020
 	 */
 	public int save(Map<String, Object> data) {
-		return jdbcTemplate.update("INSERT INTO beacon (name, mac, message, location) VALUES(?,?, ?, ?)",
+		int res = jdbcTemplate.update("INSERT INTO beacon (name, mac, message, location) VALUES(?,?, ?, ?)",
 				data.get("name"), data.get("becon_mac"), data.get("message"), data.get("location"));
+		System.out.println("res---------------"+res);
+		return res;
 	}
+	
+	/*
+	 * public int save1(Map<String, Object> data) {
+	 * 
+	 * String sql =
+	 * "INSERT INTO beacon (name, mac, message, location) VALUES(?,?, ?, ?)";
+	 * KeyHolder keyHolder = new GeneratedKeyHolder();
+	 * 
+	 * jdbcTemplate.update(connection -> { PreparedStatement ps = connection
+	 * .prepareStatement(sql); ps.setString(name, data.get("name")); return ps; },
+	 * keyHolder);
+	 * 
+	 * return (long) keyHolder.getKey(); return jdbcTemplate.
+	 * update("INSERT INTO beacon (name, mac, message, location) VALUES(?,?, ?, ?)",
+	 * data.get("name"), data.get("becon_mac"), data.get("message"),
+	 * data.get("location")); }
+	 */
 
 	/**
 	 * 
