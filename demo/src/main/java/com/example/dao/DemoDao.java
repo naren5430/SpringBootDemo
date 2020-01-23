@@ -23,7 +23,6 @@ public class DemoDao {
 	public int save(Map<String, Object> data) {
 		int res = jdbcTemplate.update("INSERT INTO beacon (name, mac, message, location) VALUES(?,?, ?, ?)",
 				data.get("name"), data.get("becon_mac"), data.get("message"), data.get("location"));
-		System.out.println("res---------------"+res);
 		return res;
 	}
 	
