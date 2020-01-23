@@ -6,8 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.lang.model.type.NullType;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,8 +31,8 @@ import com.example.service.DemoService;
  * @since 10-01-2020
  */
 @RestController
-@RequestMapping("/demo")
-public class DemoController {
+@RequestMapping(value = "/demo", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+public class DemoController{
 	
 	@Autowired
 	DemoService service;
@@ -65,9 +69,17 @@ public class DemoController {
 	 * @author Narendranadh P
 	 * @since 20-01-2020
 	 */
-	
+
+	/*
+	 * Accepts Json format
 	@PostMapping("/beacon/save")
 	public int save(@RequestBody Map<String, Object > data) {
+		return service.save(data);
+	}
+	*/
+	
+	@PostMapping(path = "/beacon/save", consumes = "application/x-www-form-urlencoded")
+	public int save(@RequestParam Map<String, Object > data) {
 		return service.save(data);
 	}
 	
