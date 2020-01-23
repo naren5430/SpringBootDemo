@@ -6,11 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.lang.model.type.NullType;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,9 +28,10 @@ import com.example.service.DemoService;
  * @author Narendranadh P
  * @since 10-01-2020
  */
+@SuppressWarnings("serial")
 @RestController
-@RequestMapping(value = "/demo", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-public class DemoController{
+@RequestMapping(value = "/demo")
+public class DemoController extends RuntimeException{
 	
 	@Autowired
 	DemoService service;
@@ -67,6 +66,7 @@ public class DemoController{
 	 * @param data
 	 * @return
 	 * @author Narendranadh P
+	 * @return 
 	 * @since 20-01-2020
 	 */
 
@@ -77,10 +77,17 @@ public class DemoController{
 		return service.save(data);
 	}
 	*/
-	
 	@PostMapping(path = "/beacon/save", consumes = "application/x-www-form-urlencoded")
-	public int save(@RequestParam Map<String, Object > data) {
-		return service.save(data);
+	public ResponseEntity<Map<String, Object>> save(@RequestParam Map<String, Object > data, HttpSession httpSession) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		int res = service.save(data);
+			if(res == 1) {
+			map.put("message", "approved");
+			map.put("status", "success");
+			}else {	
+	        map.put("error", "history already exist");	
+		}
+		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
 	
 	/**

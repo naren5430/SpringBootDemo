@@ -1,13 +1,10 @@
 package com.example.dao;
 
-import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -24,8 +21,10 @@ public class DemoDao {
 	 * @since 21-01-2020
 	 */
 	public int save(Map<String, Object> data) {
-		return jdbcTemplate.update("INSERT INTO beacon (name, mac, message, location) VALUES(?,?, ?, ?)",
+		int res = jdbcTemplate.update("INSERT INTO beacon (name, mac, message, location) VALUES(?,?, ?, ?)",
 				data.get("name"), data.get("becon_mac"), data.get("message"), data.get("location"));
+		System.out.println("res---------------"+res);
+		return res;
 	}
 	
 	/*
