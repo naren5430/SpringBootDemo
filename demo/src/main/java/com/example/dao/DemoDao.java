@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -21,8 +22,14 @@ public class DemoDao {
 	 * @since 21-01-2020
 	 */
 	public int save(Map<String, Object> data) {
-		int res = jdbcTemplate.update("INSERT INTO beacon (name, mac, message, location) VALUES(?,?, ?, ?)",
+		int res;
+		try {
+		res = jdbcTemplate.update("INSERT INTO beacon (name, mac, message, location) VALUES(?,?, ?, ?)",
 				data.get("name"), data.get("becon_mac"), data.get("message"), data.get("location"));
+		}catch(DuplicateKeyException key){
+			return 0;
+		}
+		
 		System.out.println("res---------------"+res);
 		return res;
 	}

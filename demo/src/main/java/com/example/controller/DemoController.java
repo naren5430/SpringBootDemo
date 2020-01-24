@@ -85,7 +85,9 @@ public class DemoController extends RuntimeException{
 			map.put("message", "approved");
 			map.put("status", "success");
 			}else {	
-	        map.put("error", "history already exist");	
+				map.put("message", "rejected");
+				map.put("status", "fail");
+				map.put("error","Duplicate entry for key");
 		}
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
