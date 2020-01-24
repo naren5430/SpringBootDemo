@@ -26,9 +26,7 @@ public class DemoDao {
 		try {
 		res = jdbcTemplate.update("INSERT INTO beacon (name, mac, message, location) VALUES(?,?, ?, ?)",
 				data.get("name"), data.get("becon_mac"), data.get("message"), data.get("location"));
-		}catch(DuplicateKeyException key){
-			return 0;
-		}
+
 		return res;
 	}
 	
