@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -28,6 +29,8 @@ public class DemoDao {
 				data.get("name"), data.get("becon_mac"), data.get("message"), data.get("location"));
 		}catch(DuplicateKeyException key){
 			return 0;
+		}catch(DataIntegrityViolationException key){
+			return 2;
 		}
 		return res;
 	}
@@ -82,7 +85,7 @@ public class DemoDao {
 	 */
 	public List<Map<String, Object>> list() {
 		return jdbcTemplate.queryForList(
-				"SELECT mac AS `becon_mac`, name, message, location, date_format(created_time,'%D-%M-%Y %r') AS `Added Date` FROM beacon ORDER BY pk_id DESC");
+				"SELECT mac AS `becon_mac`, name, message, location, date_format(created_time,'%D %M %Y %r') AS `Added Date` FROM beacon ORDER BY pk_id DESC");
 	}
 
 	/**
@@ -96,7 +99,7 @@ public class DemoDao {
 	 */
 	public List<Map<String, Object>> list(String parameter, String sort) {
 		return jdbcTemplate.queryForList(
-				"SELECT mac AS `becon_mac`, name, message, location, date_format(created_time,'%D-%M-%Y %r') AS `Added Date` FROM beacon ORDER BY "
+				"SELECT mac AS `becon_mac`, name, message, location, date_format(created_time,'%D %M %Y %r') AS `Added Date` FROM beacon ORDER BY "
 						+ parameter + " " + sort);
 	}
 }

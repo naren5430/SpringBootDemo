@@ -84,10 +84,14 @@ public class DemoController extends RuntimeException{
 			if(res == 1) {
 			map.put("message", "approved");
 			map.put("status", "success");
-			}else {	
+			}else if(res == 0){	
 				map.put("message", "rejected");
 				map.put("status", "fail");
 				map.put("error","Duplicate entry for key");
+		}else if(res == 2) {
+			map.put("message", "rejected");
+			map.put("status", "fail");
+			map.put("error","IntegrityConstraintViolationException: Column 'name','mac','message' and 'location' cannot be null");
 		}
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
