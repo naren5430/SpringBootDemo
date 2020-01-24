@@ -29,8 +29,6 @@ public class DemoDao {
 		}catch(DuplicateKeyException key){
 			return 0;
 		}
-		
-		System.out.println("res---------------"+res);
 		return res;
 	}
 	

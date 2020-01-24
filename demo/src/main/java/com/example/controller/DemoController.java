@@ -123,7 +123,7 @@ public class DemoController extends RuntimeException{
 	 * @author Narendranadh P
 	 * @since 21-01-2020
 	 */
-	@PostMapping("/beacon/list")
+	@PostMapping(path = "/beacon/list")
 	public ResponseEntity<Map<String, Object>> list() {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		HashMap<String, Object> map = new HashMap<String, Object>();
