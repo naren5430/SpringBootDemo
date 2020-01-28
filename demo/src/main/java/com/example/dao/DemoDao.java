@@ -10,8 +10,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class DemoDao {
+public class DemoDao{
 
+
+	
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
