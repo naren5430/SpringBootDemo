@@ -76,7 +76,7 @@ public class DemoDao{
 	 * @since 21-01-2020
 	 */
 	public int delete(int id) {
-		return jdbcTemplate.update("DELETE FROM beacon WHERE id = ?", id);
+		return jdbcTemplate.update("DELETE FROM beacon WHERE pk_id = ?", id);
 	}
 
 	/**
