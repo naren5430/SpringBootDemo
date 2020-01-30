@@ -39,9 +39,9 @@ public class DemoController extends RuntimeException{
 	 * @author Narendranadh P
 	 * @return
 	 */
-	@GetMapping("/name")
+	@GetMapping("")
 	public String displayName() {
-		return "Narendranadh Chowdary Palempati";
+		return "Hello Narendranadh, Welcome to locus application";
 	}
 	@PostMapping("/addition/{val1}/{val2}")
 	public int addition(@PathVariable("val1") int val1,@PathVariable("val2") int val2) {
