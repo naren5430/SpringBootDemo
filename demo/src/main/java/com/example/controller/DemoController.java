@@ -158,4 +158,24 @@ public class DemoController extends RuntimeException{
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
 	
+	@PostMapping("/beacon/distance/{lat1}/{lon1}/{lat2}/{lon2}")
+	private static double distance(@PathVariable("lat1") double lat1,@PathVariable("lon1") double lon1, @PathVariable("lat2") double lat2, @PathVariable("lon2") double lon2, String unit) {
+		if ((lat1 == lat2) && (lon1 == lon2)) {
+			return 0;
+		}
+		else {
+			double theta = lon1 - lon2;
+			double dist = Math.sin(Math.toRadians(lat1)) * Math.sin(Math.toRadians(lat2)) + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) * Math.cos(Math.toRadians(theta));
+			dist = Math.acos(dist);
+			dist = Math.toDegrees(dist);
+			dist = dist * 60 * 1.1515;
+			if (unit.equals("K")) {
+				dist = dist * 1.609344;
+			} else if (unit.equals("N")) {
+				dist = dist * 0.8684;
+			}
+			return (dist);
+		}
+	}
+	
 }
