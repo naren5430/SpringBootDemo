@@ -158,24 +158,30 @@ public class DemoController extends RuntimeException{
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
 	
-	@PostMapping("/beacon/distance/{lat1}/{lon1}/{lat2}/{lon2}")
-	private static double distance(@PathVariable("lat1") double lat1,@PathVariable("lon1") double lon1, @PathVariable("lat2") double lat2, @PathVariable("lon2") double lon2, String unit) {
-		if ((lat1 == lat2) && (lon1 == lon2)) {
-			return 0;
-		}
-		else {
-			double theta = lon1 - lon2;
-			double dist = Math.sin(Math.toRadians(lat1)) * Math.sin(Math.toRadians(lat2)) + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) * Math.cos(Math.toRadians(theta));
-			dist = Math.acos(dist);
-			dist = Math.toDegrees(dist);
-			dist = dist * 60 * 1.1515;
-			if (unit.equals("K")) {
-				dist = dist * 1.609344;
-			} else if (unit.equals("N")) {
-				dist = dist * 0.8684;
-			}
-			return (dist);
-		}
+	/**
+	 * 
+	 * @apiUse --Used to calculate Distance between two coordinates
+	 * @param lat1
+	 * @param lon1
+	 * @param lat2
+	 * @param lon2
+	 * @param unit
+	 * @author Narendranadh P
+	 * @since 05-02-2020
+	 */
+	@PostMapping(path="/beacon/distance", consumes = "application/x-www-form-urlencoded")
+	public ResponseEntity<Map<String, Object>> distance(@RequestParam("lat1") double lat1,@RequestParam("lon1") double lon1, @RequestParam("lat2") double lat2, @RequestParam("lon2") double lon2, @RequestParam("unit") String unit) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		double calDistance;	
+		calDistance = service.distancecal(lat1,lon1,lat2,lon2,unit);
+		map.put("Latitude1", lat1);
+		map.put("Longitude1", lon1);
+		map.put("Latitude2", lat2);
+		map.put("Longitude2", lon2);
+		map.put("Units", unit);
+		map.put("status", "success");
+		map.put("Distance", calDistance);
+		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
 	
 }
