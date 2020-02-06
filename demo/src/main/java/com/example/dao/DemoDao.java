@@ -9,6 +9,7 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+
 @Repository
 public class DemoDao{
 
@@ -76,7 +77,7 @@ public class DemoDao{
 	 * @since 21-01-2020
 	 */
 	public int delete(int id) {
-		return jdbcTemplate.update("DELETE FROM beacon WHERE id = ?", id);
+		return jdbcTemplate.update("DELETE FROM beacon WHERE pk_id = ?", id);
 	}
 
 	/**

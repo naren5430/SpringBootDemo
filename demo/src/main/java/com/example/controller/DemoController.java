@@ -39,9 +39,9 @@ public class DemoController extends RuntimeException{
 	 * @author Narendranadh P
 	 * @return
 	 */
-	@GetMapping("/name")
+	@GetMapping("")
 	public String displayName() {
-		return "Narendranadh Chowdary Palempati";
+		return "Hello Narendranadh, Welcome to locus application";
 	}
 	@PostMapping("/addition/{val1}/{val2}")
 	public int addition(@PathVariable("val1") int val1,@PathVariable("val2") int val2) {
@@ -155,6 +155,32 @@ public class DemoController extends RuntimeException{
 		map.put("message", "approved");
 		map.put("status", "success");
 		map.put("data", list);
+		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+	}
+	
+	/**
+	 * 
+	 * @apiUse --Used to calculate Distance between two coordinates
+	 * @param lat1
+	 * @param lon1
+	 * @param lat2
+	 * @param lon2
+	 * @param unit
+	 * @author Narendranadh P
+	 * @since 05-02-2020
+	 */
+	@PostMapping(path="/beacon/distance", consumes = "application/x-www-form-urlencoded")
+	public ResponseEntity<Map<String, Object>> distance(@RequestParam("lat1") double lat1,@RequestParam("lon1") double lon1, @RequestParam("lat2") double lat2, @RequestParam("lon2") double lon2, @RequestParam("unit") String unit) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		double calDistance;	
+		calDistance = service.distancecal(lat1,lon1,lat2,lon2,unit);
+		map.put("Latitude1", lat1);
+		map.put("Longitude1", lon1);
+		map.put("Latitude2", lat2);
+		map.put("Longitude2", lon2);
+		map.put("Units", unit);
+		map.put("status", "success");
+		map.put("Distance", calDistance);
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
 	
