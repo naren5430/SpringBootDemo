@@ -1,4 +1,4 @@
-package com.example.controller;
+package tech.fastlane.controller;
 
 
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.service.DemoService;
+import tech.fastlane.service.DemoService;
 
 /**
  * @apiNote Beacon CURD operation

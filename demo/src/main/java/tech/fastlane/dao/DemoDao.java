@@ -1,4 +1,4 @@
-package com.example.dao;
+package tech.fastlane.dao;
 
 import java.util.List;
 import java.util.Map;
