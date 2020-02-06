@@ -3,6 +3,7 @@ package com.example.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -171,7 +172,7 @@ public class DemoController extends RuntimeException{
 	 */
 	@PostMapping(path="/beacon/distance", consumes = "application/x-www-form-urlencoded")
 	public ResponseEntity<Map<String, Object>> distance(@RequestParam("lat1") double lat1,@RequestParam("lon1") double lon1, @RequestParam("lat2") double lat2, @RequestParam("lon2") double lon2, @RequestParam("unit") String unit) {
-		HashMap<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = new LinkedHashMap<String, Object>();
 		double calDistance;	
 		calDistance = service.distancecal(lat1,lon1,lat2,lon2,unit);
 		map.put("Latitude1", lat1);
