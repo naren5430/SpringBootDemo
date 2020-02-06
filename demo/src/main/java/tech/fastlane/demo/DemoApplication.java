@@ -1,4 +1,4 @@
-package com.example.demo;
+package tech.fastlane.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,9 +11,9 @@ import org.springframework.context.annotation.ComponentScan;
  * @version 1.0
  *
  */
-@ComponentScan("com.example.controller")
-@ComponentScan("com.example.service")
-@ComponentScan("com.example.dao")
+@ComponentScan("tech.fastlane.controller")
+@ComponentScan("tech.fastlane.service")
+@ComponentScan("tech.fastlane.dao")
 @SpringBootApplication
 public class DemoApplication {
 
