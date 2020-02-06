@@ -90,8 +90,17 @@ public class DemoService {
 		
 	}
 
-	
-
+	/**
+	 * 
+	 * @param lat1
+	 * @param lon1
+	 * @param lat2
+	 * @param lon2
+	 * @param unit
+	 * @return
+	 * @author Narendranadh P
+	 * @since 05-02-2020
+	 */
 	public double distancecal(double lat1, double lon1, double lat2, double lon2, String unit) {
 		if ((lat1 == lat2) && (lon1 == lon2)) {
 			return 0;
