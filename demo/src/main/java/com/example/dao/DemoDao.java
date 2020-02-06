@@ -28,11 +28,11 @@ public class DemoDao{
 	public int save(Map<String, Object> data) {
 		int res;
 		try {
-		res = jdbcTemplate.update("INSERT INTO beacon (name, mac, message, location) VALUES(?,?, ?, ?)",
-				data.get("name"), data.get("becon_mac"), data.get("message"), data.get("location"));
-		}catch(DuplicateKeyException key){
+			res = jdbcTemplate.update("INSERT INTO beacon (name, mac, message, location) VALUES(?,?, ?, ?)",
+					data.get("name"), data.get("becon_mac"), data.get("message"), data.get("location"));
+		} catch (DuplicateKeyException key) {
 			return 0;
-		}catch(DataIntegrityViolationException key){
+		} catch (DataIntegrityViolationException key) {
 			return 2;
 		}
 		return res;
