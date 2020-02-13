@@ -88,7 +88,7 @@ public class DemoDao{
 	 */
 	public List<Map<String, Object>> list() {
 		return jdbcTemplate.queryForList(
-				"SELECT mac AS `becon_mac`, name, message, location, date_format(created_time,'%D %M %Y %r') AS `Added Date` FROM beacon ORDER BY pk_id DESC");
+				"SELECT mac AS `becon_mac`, name, message, location, date_format(created_time,'%D %M %Y %r UTC') AS `Added Date` FROM beacon ORDER BY pk_id DESC");
 	}
 
 	/**
